@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEW - Student Excellence Workshop</title>
+    <title>SEW - Stoic Enigma of Wellbeing </title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,8 +14,8 @@
 
         body {
             font-family: 'Orbitron', monospace;
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
             line-height: 1.6;
         }
 
@@ -64,7 +64,7 @@
         nav button {
             background: none;
             border: none;
-            color: #fff;
+            color: #000;
             font-family: 'Orbitron', monospace;
             font-size: 1rem;
             cursor: pointer;
@@ -108,8 +108,8 @@
         }
 
         .join-btn {
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
             border: none;
             padding: 1rem 2rem;
             font-family: 'Orbitron', monospace;
@@ -127,7 +127,7 @@
 
         /* Section Containers */
         .section-container {
-            background-color: #000;
+            background-color: #fff;
             border-radius: 15px;
             padding: 3rem;
             margin: 2rem 0;
@@ -161,7 +161,7 @@
         }
 
         .modal-content {
-            background-color: #000;
+            background-color: #fff;
             margin: 5% auto;
             padding: 2rem;
             border: 2px solid #8B0000;
@@ -172,7 +172,7 @@
         }
 
         .close {
-            color: #fff;
+            color: #000;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -204,7 +204,7 @@
             background-color: #333;
             border: 1px solid #555;
             border-radius: 5px;
-            color: #fff;
+            color: #000;
             font-family: 'Orbitron', monospace;
         }
 
@@ -217,7 +217,7 @@
         .submit-btn {
             width: 100%;
             background-color: #8B0000;
-            color: #fff;
+            color: #000;
             border: none;
             padding: 1rem;
             font-family: 'Orbitron', monospace;
@@ -235,7 +235,7 @@
 
         /* Footer */
         footer {
-            background-color: #000;
+            background-color: #fff;
             padding: 2rem 0;
             text-align: center;
             border-top: 1px solid #333;
@@ -256,7 +256,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
+            color: #000;
             text-decoration: none;
             font-size: 1.5rem;
             transition: all 0.3s ease;
@@ -385,14 +385,30 @@
     </header>
 
     <main>
-        <section id="main-group" class="hero">
+        <section id="sew" class="hero">
             <div class="container">
                 <div class="hero-quote">
-                    "You have power over your mind — not outside events. Realize this, and you will find strength."
+                    ""You have power over your mind - not outside events. Realize this, and you will find strength." "
                 </div>
                 <button class="join-btn" onclick="openModal()">Join Now</button>
             </div>
         </section>
+
+        <section id="main-group">
+            <div class="container">
+                <div class="section-container">
+                    <h2 class="section-title">SEW</h2>
+                    <p class="section-description">
+                        SEW is a society built around raising awareness for mental health and improving. Critical thinking. We conduct open mic and regular awareness campaigns in this regard. 
+                        
+                    </p>
+                    <button class="join-btn" onclick="window.open('https://chat.whatsapp.com/KgMhoU4x4s623dIA4cyY13?mode=ac_t', '_blank')">
+                        Join Now
+                    </button>
+                </div>
+            </div>
+        </section>
+        
 
         <section id="sew-games">
             <div class="container">
@@ -407,6 +423,7 @@
                 </div>
             </div>
         </section>
+        
 
         <section id="sew-guidance">
             <div class="container">
@@ -437,15 +454,6 @@
         </section>
     </main>
 
-    <!-- Debug Panel for Mobile -->
-    <button class="debug-toggle" onclick="toggleDebugPanel()" title="Toggle Debug">🐛</button>
-    <div id="debugPanel" class="debug-panel">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">
-            <strong>Debug Log</strong>
-            <button onclick="clearDebugLog()" style="background: #333; color: white; border: none; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.7rem;">Clear</button>
-        </div>
-        <div id="debugMessages"></div>
-    </div>
 
     <footer>
         <div class="container">
@@ -454,7 +462,7 @@
                 <a href="#" class="social-icon" title="Twitter">🐦</a>
                 <a href="#" class="social-icon" title="WhatsApp">💬</a>
             </div>
-            <p>&copy; 2025 SEW - Student Excellence Workshop</p>
+            <p>&copy; 2025 SEW</p>
         </div>
     </footer>
 
@@ -672,7 +680,7 @@
             if (window.scrollY > 100) {
                 header.style.backgroundColor = 'rgba(0,0,0,0.95)';
             } else {
-                header.style.backgroundColor = '#000';
+                header.style.backgroundColor = '#fff';
             }
         });
     </script>
