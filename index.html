@@ -54,8 +54,8 @@
             border: 2px solid #ff0000;
             border-radius: 50%;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: inline-flex;
+            justify-content: inline-flex;
         }
 
         nav ul {
@@ -340,12 +340,7 @@
             <div class="header-content">
                 <div class="logo"></div>
                 <nav>
-                    <ul>
-                        <li><button onclick="scrollToSection('main-group')"></button></li>
-                        <li><button onclick="scrollToSection('sew-games')"></button></li>
-                        <li><button onclick="scrollToSection('sew-guidance')"></button></li>
-                        <li><button onclick="scrollToSection('sew-ask')"></button></li>
-                    </ul>
+        
                 </nav>
             </div>
         </div>
@@ -357,10 +352,24 @@
                 <div class="hero-quote">
                     "You have power over your mind — not outside events. Realize this, and you will find strength."
                 </div>
-                <button class="join-btn" onclick="openModal()">Join Now</button>
+                <button class="join-btn" onclick="openModal()">Become a Member</button>
             </div>
         </section>
 
+        <section id="sew-games">
+            <div class="container">
+                <div class="section-container">
+                    <h2 class="section-title">Sew Main</h2>
+                    <p class="section-description">
+                        SEW is a society built around raising awareness for mental health and improving. Critical thinking. We conduct open mic and regular awareness campaigns in this regard. 
+                    </p>
+                    <button class="join-btn" onclick="window.open('https://chat.whatsapp.com/KgMhoU4x4s623dIA4cyY13?mode=ac_t', '_blank')">
+                        Join Now
+                    </button>
+                </div>
+            </div>
+        </section>
+        
         <section id="sew-games">
             <div class="container">
                 <div class="section-container">
