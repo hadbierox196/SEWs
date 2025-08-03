@@ -465,6 +465,7 @@
             font-size: 0.9rem;
             font-weight: 700;
             color: var(--primary);
+            overflow-y: auto;
         }
 
         .form-group input,
@@ -478,6 +479,7 @@
             color: var(--secondary);
             font-family: 'Orbitron', monospace;
             transition: all 0.3s ease;
+            overflow-y: auto;
         }
 
         .form-group input:focus,
@@ -485,6 +487,7 @@
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 10px rgba(0, 225, 255, 0.3);
+            overflow-y: auto;
         }
 
         .submit-btn {
@@ -874,7 +877,7 @@
     <div id="joinModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2 style="color: #ff0000; margin-bottom: 1.5rem;">Join SEW</h2>
+            <h2 style="color: #ff0000; margin-bottom: 1.5rem;"></h2>
             <div id="successMessage" class="success-message">
                 <i class="fas fa-check-circle"></i> Successfully submitted! Welcome to SEW.
             </div>
