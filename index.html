@@ -454,15 +454,35 @@
         // Make functions available globally
         window.submitToFirebase = async function(formData) {
             try {
+                console.log('Firebase app initialized:', app);
+                console.log('Database reference:', database);
+                
                 const membersRef = ref(database, 'members');
-                await push(membersRef, {
+                console.log('Members reference created:', membersRef);
+                
+                const dataToSubmit = {
                     ...formData,
                     timestamp: new Date().toISOString(),
                     joinedAt: Date.now()
-                });
+                };
+                
+                console.log('Data being submitted:', dataToSubmit);
+                
+                const result = await push(membersRef, dataToSubmit);
+                console.log('Push result:', result);
+                console.log('Data successfully written to Firebase!');
+                
                 return true;
             } catch (error) {
-                console.error('Error submitting to Firebase:', error);
+                console.error('Detailed Firebase error:', error);
+                console.error('Error code:', error.code);
+                console.error('Error message:', error.message);
+                
+                // Additional debugging info
+                if (error.code === 'PERMISSION_DENIED') {
+                    console.error('Permission denied - check Firebase security rules');
+                }
+                
                 return false;
             }
         };
@@ -522,6 +542,8 @@
                 purpose: document.getElementById('purpose').value
             };
             
+            console.log('Attempting to submit data:', formData);
+            
             // Submit to Firebase
             const success = await window.submitToFirebase(formData);
             
@@ -533,11 +555,13 @@
             if (success) {
                 successMessage.style.display = 'block';
                 form.reset();
+                console.log('Data submitted successfully!');
                 setTimeout(() => {
                     closeModal();
                 }, 2000);
             } else {
-                alert('Error submitting form. Please try again.');
+                alert('Error submitting form. Please check console for details.');
+                console.error('Failed to submit data to Firebase');
             }
         }
 
