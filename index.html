@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEW - Stoic Enigma of Wellbeing </title>
+    <title>SEW - Student Excellence Workshop</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,10 +14,9 @@
 
         body {
             font-family: 'Orbitron', monospace;
-            background-color: #fff;
-            color: #000;
+            background-color: #000;
+            color: #fff;
             line-height: 1.6;
-        
         }
 
         .container {
@@ -28,7 +27,7 @@
 
         /* Header Styles */
         header {
-            background-color: #fff;
+            background-color: #000;
             padding: 1rem 0;
             position: fixed;
             top: 0;
@@ -36,21 +35,25 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-            
-            
-                 .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-color: #fff;
         }
 
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: #8B0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #fff;
+        }
 
         nav ul {
             display: flex;
@@ -61,13 +64,13 @@
         nav button {
             background: none;
             border: none;
-            color: #000;
+            color: #fff;
             font-family: 'Orbitron', monospace;
-            font-size: 0.5rem;
+            font-size: 1rem;
             cursor: pointer;
-            padding: 0.2rem 0.5rem;
+            padding: 0.5rem 1rem;
             transition: all 0.3s ease;
-            border-radius: 2px;
+            border-radius: 5px;
         }
 
         nav button:hover {
@@ -98,7 +101,6 @@
         .hero-quote {
             font-size: clamp(1.5rem, 4vw, 3rem);
             font-weight: 700;
-            color: #fff;
             margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
@@ -106,8 +108,8 @@
         }
 
         .join-btn {
-            background-color: #fff;
-            color: #000;
+            background-color: #000;
+            color: #fff;
             border: none;
             padding: 1rem 2rem;
             font-family: 'Orbitron', monospace;
@@ -125,7 +127,7 @@
 
         /* Section Containers */
         .section-container {
-            background-color: #fff;
+            background-color: #000;
             border-radius: 15px;
             padding: 3rem;
             margin: 2rem 0;
@@ -159,7 +161,7 @@
         }
 
         .modal-content {
-            background-color: #fff;
+            background-color: #000;
             margin: 5% auto;
             padding: 2rem;
             border: 2px solid #8B0000;
@@ -170,7 +172,7 @@
         }
 
         .close {
-            color: #000;
+            color: #fff;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -199,12 +201,11 @@
         .form-group textarea {
             width: 100%;
             padding: 0.8rem;
-            background-color: #fff;
+            background-color: #333;
             border: 1px solid #555;
             border-radius: 5px;
-            color: #000;
+            color: #fff;
             font-family: 'Orbitron', monospace;
-           
         }
 
         .form-group input:focus,
@@ -216,7 +217,7 @@
         .submit-btn {
             width: 100%;
             background-color: #8B0000;
-            color: #000;
+            color: #fff;
             border: none;
             padding: 1rem;
             font-family: 'Orbitron', monospace;
@@ -228,13 +229,13 @@
         }
 
         .submit-btn:hover {
-            background-color: #FFFFFF;
+            background-color: #A00000;
             transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
-            background-color: #fff;
+            background-color: #000;
             padding: 2rem 0;
             text-align: center;
             border-top: 1px solid #333;
@@ -255,7 +256,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
+            color: #fff;
             text-decoration: none;
             font-size: 1.5rem;
             transition: all 0.3s ease;
@@ -370,15 +371,7 @@
     <header>
         <div class="container">
             <div class="header-content">
-                        <div class="logo"></div>
-
-                <!-- Embedded image from Postimg -->
-                <a href="https://postimg.cc/7bcyd3Yq" target="_blank">
-                    <img src="https://i.postimg.cc/L4wPKnhb/Screenshot-2025-08-03-18-16-43-323-com-vblast-flipaclip.png" 
-                         alt="Screenshot from FlipaClip"
-                         style="height: 60px;">
-                </a>
-                
+                <div class="logo">SEW</div>
                 <nav>
                     <ul>
                         <li><button onclick="scrollToSection('main-group')">Main Group</button></li>
@@ -392,30 +385,14 @@
     </header>
 
     <main>
-        <section id="sew" class="hero">
+        <section id="main-group" class="hero">
             <div class="container">
                 <div class="hero-quote">
-                    ""You have power over your mind - not outside events. Realize this, and you will find strength." "
+                    "You have power over your mind — not outside events. Realize this, and you will find strength."
                 </div>
                 <button class="join-btn" onclick="openModal()">Join Now</button>
             </div>
         </section>
-
-        <section id="main-group">
-            <div class="container">
-                <div class="section-container">
-                    <h2 class="section-title">SEW</h2>
-                    <p class="section-description">
-                        SEW is a society built around raising awareness for mental health and improving. Critical thinking. We conduct open mic and regular awareness campaigns in this regard. 
-                        
-                    </p>
-                    <button class="join-btn" onclick="window.open('https://chat.whatsapp.com/KgMhoU4x4s623dIA4cyY13?mode=ac_t', '_blank')">
-                        Join Now
-                    </button>
-                </div>
-            </div>
-        </section>
-        
 
         <section id="sew-games">
             <div class="container">
@@ -430,7 +407,6 @@
                 </div>
             </div>
         </section>
-        
 
         <section id="sew-guidance">
             <div class="container">
@@ -461,6 +437,15 @@
         </section>
     </main>
 
+    <!-- Debug Panel for Mobile -->
+    <button class="debug-toggle" onclick="toggleDebugPanel()" title="Toggle Debug">🐛</button>
+    <div id="debugPanel" class="debug-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">
+            <strong>Debug Log</strong>
+            <button onclick="clearDebugLog()" style="background: #333; color: white; border: none; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.7rem;">Clear</button>
+        </div>
+        <div id="debugMessages"></div>
+    </div>
 
     <footer>
         <div class="container">
@@ -469,7 +454,7 @@
                 <a href="#" class="social-icon" title="Twitter">🐦</a>
                 <a href="#" class="social-icon" title="WhatsApp">💬</a>
             </div>
-            <p>&copy; 2025 SEW</p>
+            <p>&copy; 2025 SEW - Student Excellence Workshop</p>
         </div>
     </footer>
 
@@ -687,7 +672,7 @@
             if (window.scrollY > 100) {
                 header.style.backgroundColor = 'rgba(0,0,0,0.95)';
             } else {
-                header.style.backgroundColor = '#fff';
+                header.style.backgroundColor = '#000';
             }
         });
     </script>
