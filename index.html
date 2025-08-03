@@ -313,10 +313,57 @@
             display: none;
         }
 
-        /* Loading State */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
+        /* Debug Messages */
+        .debug-panel {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.9);
+            border: 2px solid #8B0000;
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.8rem;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 3000;
+            display: none;
+        }
+
+        .debug-message {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .debug-info {
+            background-color: rgba(0,100,255,0.2);
+            border-left: 3px solid #0066ff;
+        }
+
+        .debug-success {
+            background-color: rgba(0,255,0,0.2);
+            border-left: 3px solid #00ff00;
+        }
+
+        .debug-error {
+            background-color: rgba(255,0,0,0.2);
+            border-left: 3px solid #ff0000;
+        }
+
+        .debug-toggle {
+            position: fixed;
+            bottom: 220px;
+            right: 10px;
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 3001;
         }
     </style>
 </head>
@@ -390,6 +437,16 @@
         </section>
     </main>
 
+    <!-- Debug Panel for Mobile -->
+    <button class="debug-toggle" onclick="toggleDebugPanel()" title="Toggle Debug">🐛</button>
+    <div id="debugPanel" class="debug-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">
+            <strong>Debug Log</strong>
+            <button onclick="clearDebugLog()" style="background: #333; color: white; border: none; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.7rem;">Clear</button>
+        </div>
+        <div id="debugMessages"></div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="social-icons">
@@ -454,11 +511,12 @@
         // Make functions available globally
         window.submitToFirebase = async function(formData) {
             try {
-                console.log('Firebase app initialized:', app);
-                console.log('Database reference:', database);
+                debugLog('Starting Firebase submission...', 'info');
+                debugLog(`Firebase app status: ${app ? 'initialized' : 'not initialized'}`, 'info');
+                debugLog(`Database status: ${database ? 'connected' : 'not connected'}`, 'info');
                 
                 const membersRef = ref(database, 'members');
-                console.log('Members reference created:', membersRef);
+                debugLog('Created database reference to "members"', 'info');
                 
                 const dataToSubmit = {
                     ...formData,
@@ -466,29 +524,70 @@
                     joinedAt: Date.now()
                 };
                 
-                console.log('Data being submitted:', dataToSubmit);
+                debugLog(`Final data being submitted: ${JSON.stringify(dataToSubmit)}`, 'info');
                 
                 const result = await push(membersRef, dataToSubmit);
-                console.log('Push result:', result);
-                console.log('Data successfully written to Firebase!');
+                debugLog(`Push successful! Key: ${result.key}`, 'success');
+                debugLog('Data successfully written to Firebase Realtime Database!', 'success');
                 
                 return true;
             } catch (error) {
-                console.error('Detailed Firebase error:', error);
-                console.error('Error code:', error.code);
-                console.error('Error message:', error.message);
+                debugLog(`Firebase Error: ${error.message}`, 'error');
+                debugLog(`Error Code: ${error.code || 'No code'}`, 'error');
                 
-                // Additional debugging info
+                // Common error explanations
                 if (error.code === 'PERMISSION_DENIED') {
-                    console.error('Permission denied - check Firebase security rules');
+                    debugLog('SOLUTION: Check Firebase Security Rules - they might be too restrictive', 'error');
+                } else if (error.message.includes('network')) {
+                    debugLog('SOLUTION: Check internet connection', 'error');
+                } else if (error.message.includes('auth')) {
+                    debugLog('SOLUTION: Check Firebase authentication settings', 'error');
                 }
                 
                 return false;
             }
         };
+
+        // Test Firebase connection on page load
+        window.addEventListener('load', () => {
+            debugLog('Page loaded, testing Firebase connection...', 'info');
+            setTimeout(() => {
+                try {
+                    const testRef = ref(database, '.info/connected');
+                    debugLog('Firebase connection test initiated', 'info');
+                } catch (error) {
+                    debugLog(`Firebase connection test failed: ${error.message}`, 'error');
+                }
+            }, 2000);
+        });
     </script>
 
     <script>
+        // Debug functions for mobile
+        function debugLog(message, type = 'info') {
+            const debugMessages = document.getElementById('debugMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `debug-message debug-${type}`;
+            messageDiv.innerHTML = `<strong>${new Date().toLocaleTimeString()}:</strong> ${message}`;
+            debugMessages.appendChild(messageDiv);
+            debugMessages.scrollTop = debugMessages.scrollHeight;
+            
+            // Also log to console for desktop users
+            console.log(`[DEBUG ${type.toUpperCase()}]`, message);
+        }
+
+        function toggleDebugPanel() {
+            const panel = document.getElementById('debugPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function clearDebugLog() {
+            document.getElementById('debugMessages').innerHTML = '';
+        }
+
+        // Initialize debug
+        debugLog('Debug panel initialized', 'info');
+
         // Smooth scrolling function
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
@@ -525,6 +624,8 @@
         async function submitForm(event) {
             event.preventDefault();
             
+            debugLog('Form submission started', 'info');
+            
             const form = document.getElementById('joinForm');
             const submitBtn = form.querySelector('.submit-btn');
             const successMessage = document.getElementById('successMessage');
@@ -542,7 +643,7 @@
                 purpose: document.getElementById('purpose').value
             };
             
-            console.log('Attempting to submit data:', formData);
+            debugLog(`Form data collected: ${JSON.stringify(formData)}`, 'info');
             
             // Submit to Firebase
             const success = await window.submitToFirebase(formData);
@@ -553,15 +654,15 @@
             form.classList.remove('loading');
             
             if (success) {
+                debugLog('Form submitted successfully!', 'success');
                 successMessage.style.display = 'block';
                 form.reset();
-                console.log('Data submitted successfully!');
                 setTimeout(() => {
                     closeModal();
                 }, 2000);
             } else {
-                alert('Error submitting form. Please check console for details.');
-                console.error('Failed to submit data to Firebase');
+                debugLog('Form submission failed - check error messages above', 'error');
+                alert('Error submitting form. Check debug panel for details.');
             }
         }
 
